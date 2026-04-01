@@ -139,12 +139,12 @@ class EmergencyAlertElevenLabsTTSConnector(
         base_url = getattr(
             self.config,
             "base_url",
-            f"wss://api.openmind.org/api/core/google/asr?api_key={api_key}",
+            f"wss://api.openmind.com/api/core/google/asr?api_key={api_key}",
         )
         self.asr = ASRRTSPProvider(ws_url=base_url)
 
         self.tts = ElevenLabsTTSProvider(
-            url="https://api.openmind.org/api/core/elevenlabs/tts",
+            url="https://api.openmind.com/api/core/elevenlabs/tts",
             api_key=api_key,
             elevenlabs_api_key=elevenlabs_api_key,
             voice_id=voice_id,
@@ -189,7 +189,7 @@ class EmergencyAlertElevenLabsTTSConnector(
         # Store robot message to conversation history only if there was ASR input
         if (
             self.io_provider.llm_prompt is not None
-            and "INPUT: Voice" in self.io_provider.llm_prompt
+            and "Voice:" in self.io_provider.llm_prompt
         ):
             self.conversation_provider.store_robot_message(output_interface.action)
 

@@ -253,7 +253,7 @@ def test_message_handler_create_elevenlabs_provider():
     with patch("runtime.hook.ElevenLabsTTSProvider") as mock_provider:
         handler._create_tts_provider()
         mock_provider.assert_called_once_with(
-            url="https://api.openmind.org/api/core/elevenlabs/tts",
+            url="https://api.openmind.com/api/core/elevenlabs/tts",
             api_key=None,
             elevenlabs_api_key=None,
             voice_id="JBFqnCBsd6RMkjVDRZzb",
@@ -762,11 +762,11 @@ def test_find_function_in_module_import_error():
 
     with patch("runtime.hook.os.path.exists", return_value=True):
         with patch("builtins.open", mock_open(read_data=file_content)):
-            with patch(
-                "runtime.hook.importlib.import_module",
-                side_effect=ImportError("Module not found"),
-            ):
-                with patch("runtime.hook.logging") as mock_logging:
+            with patch("runtime.hook.logging") as mock_logging:
+                with patch(
+                    "runtime.hook.importlib.import_module",
+                    side_effect=ImportError("Module not found"),
+                ):
                     result = handler._find_function_in_module(
                         "test_module", "test_func"
                     )

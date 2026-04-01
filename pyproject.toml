@@ -1,14 +1,14 @@
 [project]
 name = "om1"
-version = "0.1.0"
+version = "1.0.1"
 description = "OM1 - a modern agent and robotics runtime system"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "ultralytics==8.3.156",
     "soundfile==0.13.1",
     "sounddevice==0.5.2",
-    "pynmeagps==1.0.50",
+    "pynmeagps==1.1.2",
     "bleak==0.22.3",
     "matplotlib==3.10.1",
     "json5==0.10.0",
@@ -35,7 +35,7 @@ dependencies = [
     "uvicorn==0.34.0",
     "websockets==13.1",
     "om1-modules @ git+https://github.com/OpenMind/om1-modules.git@56fbb4f498e67b666306d9b11f7422d9447db92b",
-    "aiohttp==3.13.3",
+    "aiohttp==3.13.4",
     "pynput==1.8.1",
     "dimo-python-sdk @ git+https://github.com/openminddev/dimo-python-sdk.git@6b47fcd28654a4145cedee649a0999a8eb08a2f6",
     "nest-asyncio==1.6.0",
@@ -51,7 +51,7 @@ macos = ["osascript"]
 
 [dependency-groups]
 dev = [
-    "black==25.1.0",
+    "black==26.3.1",
     "isort==6.0.0",
     "pre-commit==4.1.0",
     "pyright==1.1.408",
@@ -102,6 +102,7 @@ skip_covered = false
 
 [tool.black]
 line-length = 88
+target-version = ["py312"]
 include = '\.pyi?$'
 exclude = "(.venv)|(/src/unitree)|(/src/ubtech)"
 

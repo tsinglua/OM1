@@ -139,7 +139,7 @@ class SpeakElevenLabsTTSConnector(
 
         # Initialize Eleven Labs TTS Provider
         self.tts = ElevenLabsTTSProvider(
-            url="https://api.openmind.org/api/core/elevenlabs/tts",
+            url="https://api.openmind.com/api/core/elevenlabs/tts",
             api_key=api_key,
             elevenlabs_api_key=elevenlabs_api_key,
             voice_id=voice_id,
@@ -151,7 +151,7 @@ class SpeakElevenLabsTTSConnector(
 
         # Configure Eleven Labs TTS Provider to ensure settings are applied
         self.tts.configure(
-            url="https://api.openmind.org/api/core/elevenlabs/tts",
+            url="https://api.openmind.com/api/core/elevenlabs/tts",
             api_key=api_key,
             elevenlabs_api_key=elevenlabs_api_key,
             voice_id=voice_id,
@@ -194,7 +194,7 @@ class SpeakElevenLabsTTSConnector(
             self.silence_rate > 0
             and self.silence_counter < self.silence_rate
             and self.io_provider.llm_prompt is not None
-            and "INPUT: Voice" not in self.io_provider.llm_prompt
+            and "Voice:" not in self.io_provider.llm_prompt
         ):
             self.silence_counter += 1
             logging.info(
@@ -210,7 +210,7 @@ class SpeakElevenLabsTTSConnector(
         # Store robot message to conversation history only if there was ASR input
         if (
             self.io_provider.llm_prompt is not None
-            and "INPUT: Voice" in self.io_provider.llm_prompt
+            and "Voice:" in self.io_provider.llm_prompt
         ):
             self.conversation_provider.store_robot_message(output_interface.action)
 
